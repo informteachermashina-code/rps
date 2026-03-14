@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<title>Камінь Ножиці Папір</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    text-align:center;
+    background: linear-gradient(135deg,#4facfe,#00f2fe);
+    color:white;
+    margin:0;
+    padding:40px;
+}
+
+h1{
+    font-size:40px;
+}
+
+.buttons{
+    margin-top:40px;
+}
+
+button{
+    font-size:22px;
+    padding:15px 25px;
+    margin:10px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+button:hover{
+    transform:scale(1.1);
+}
+
+.result{
+    margin-top:40px;
+    font-size:26px;
+}
+
+.score{
+    margin-top:20px;
+    font-size:20px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>✊ Камінь — ✌️ Ножиці — ✋ Папір</h1>
+
+<p>Обери свій варіант:</p>
+
+<div class="buttons">
+<button onclick="play('rock')">✊ Камінь</button>
+<button onclick="play('scissors')">✌️ Ножиці</button>
+<button onclick="play('paper')">✋ Папір</button>
+</div>
+
+<div class="result" id="result">Зроби свій хід</div>
+
+<div class="score">
+Гравець: <span id="playerScore">0</span> |
+Комп'ютер: <span id="computerScore">0</span>
+</div>
+
+<script>
+
+let playerScore = 0
+let computerScore = 0
+
+function play(player){
+
+    const options = ["rock","paper","scissors"]
+    const computer = options[Math.floor(Math.random()*3)]
+
+    let resultText = ""
+
+    if(player === computer){
+        resultText = "Нічия 🤝"
+    }
+
+    else if(
+        (player === "rock" && computer === "scissors") ||
+        (player === "paper" && computer === "rock") ||
+        (player === "scissors" && computer === "paper")
+    ){
+        resultText = "Ти виграв 🎉"
+        playerScore++
+    }
+
+    else{
+        resultText = "Комп'ютер виграв 🤖"
+        computerScore++
+    }
+
+    document.getElementById("result").innerHTML =
+        "Ти: " + player + "<br>Комп'ютер: " + computer + "<br><b>" + resultText + "</b>"
+
+    document.getElementById("playerScore").textContent = playerScore
+    document.getElementById("computerScore").textContent = computerScore
+}
+
+</script>
+
+</body>
+</html>
